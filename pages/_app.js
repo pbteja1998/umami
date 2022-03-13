@@ -6,8 +6,6 @@ import useLocale from 'hooks/useLocale';
 import 'styles/variables.css';
 import 'styles/bootstrap-grid.css';
 import 'styles/index.css';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/600.css';
 
 const Intl = ({ children }) => {
   const { locale, messages } = useLocale();

@@ -11,10 +11,10 @@
   --gray800: #4b4b4b;
   --gray900: #2c2c2c;
 
-  --primary400: #2680eb;
-  --primary500: #1473e6;
-  --primary600: #0d66d0;
-  --primary700: #095aba;
+  --primary400: rgb(107, 114, 128);
+  --primary500: rgb(75, 85, 99);
+  --primary600: rgb(55, 65, 81);
+  --primary700: rgb(31, 41, 55);
 
   --font-size-xlarge: 36px;
   --font-size-large: 24px;
