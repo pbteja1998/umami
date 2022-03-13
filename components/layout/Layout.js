@@ -3,9 +3,11 @@ import Head from 'next/head';
 import Header from 'components/layout/Header';
 import Footer from 'components/layout/Footer';
 import useLocale from 'hooks/useLocale';
+import { useRouter } from 'next/router';
 
 export default function Layout({ title, children, header = true, footer = true }) {
   const { dir } = useLocale();
+  const router = useRouter();
 
   return (
     <>
@@ -14,7 +16,7 @@ export default function Layout({ title, children, header = true, footer = true }
       </Head>
 
       {header && <Header />}
-      <main className="container" dir={dir}>
+      <main className={router.query.embed === 'true' ? '' : 'container'} dir={dir}>
         {children}
       </main>
       {footer && <Footer />}
