@@ -13,8 +13,8 @@ export default function Footer() {
     <footer className={classNames(styles.footer, 'row')}>
       <div className="col-12 col-md-4" />
       <div className="col-12 col-md-4">
-        &copy; 2022 feather. Powered by
-        <Link href={VERSION_URL}>umami</Link>
+        &copy; 2022 feather (powered by{' '}
+        <Link href={VERSION_URL}>umami</Link>)
       </div>
       <div className={classNames(styles.version, 'col-12 col-md-4')}>
       </div>
