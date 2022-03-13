@@ -13,20 +13,10 @@ export default function Footer() {
     <footer className={classNames(styles.footer, 'row')}>
       <div className="col-12 col-md-4" />
       <div className="col-12 col-md-4">
-        <FormattedMessage
-          id="message.powered-by"
-          defaultMessage="Powered by {name}"
-          values={{
-            name: (
-              <Link href={HOMEPAGE_URL}>
-                <b>umami</b>
-              </Link>
-            ),
-          }}
-        />
+        &copy; 2022 feather. Powered by
+        <Link href={VERSION_URL}>umami</Link>
       </div>
       <div className={classNames(styles.version, 'col-12 col-md-4')}>
-        <Link href={VERSION_URL}>{`v${current}`}</Link>
       </div>
     </footer>
   );
