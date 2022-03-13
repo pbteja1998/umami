@@ -16,6 +16,10 @@
   margin-right: 12px;
 }
 
+.logoText {
+  font-weight: 600;
+}
+
 .links {
   flex: 1;
   display: flex;

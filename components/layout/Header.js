@@ -21,7 +21,9 @@ export default function Header() {
       <header className={classNames(styles.header, 'row')}>
         <div className={styles.title}>
           <Icon icon={<Logo />} size="large" className={styles.logo} />
-          <Link href={user ? '/' : 'https://feather.is?utm_source=stats'}>feather</Link>
+          <Link href={user ? '/' : HOMEPAGE_URL} className={styles.logoText}>
+            feather
+          </Link>
         </div>
         <HamburgerButton />
         {user && (
