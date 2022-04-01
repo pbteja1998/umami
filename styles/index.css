@@ -1,8 +1,40 @@
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-weight: 400;
+  font-style: normal;
+  src: url('/fonts/PlusJakartaSans-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-weight: 500;
+  font-style: normal;
+  src: url('/fonts/PlusJakartaSans-Medium.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-weight: 600;
+  font-style: normal;
+  src: url('/fonts/PlusJakartaSans-SemiBold.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-weight: 700;
+  font-style: normal;
+  src: url('/fonts/PlusJakartaSans-Bold.woff2') format('woff2');
+  font-display: swap;
+}
+
 html,
 body {
-  font-family: Inter, -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans,
-    Ubuntu, Cantrell, 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol';
+  font-family: Plus Jakarta Sans, -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantrell, 'Helvetica Neue', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
   font-weight: 400;
   line-height: 1.8;
   padding: 0;
@@ -73,7 +105,7 @@ h6 {
 button,
 input,
 select {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 a,

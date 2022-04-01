@@ -23,7 +23,9 @@ export default function Header() {
       <header className={classNames(styles.header, 'row')}>
         <div className={styles.title}>
           <Icon icon={<Logo />} size="large" className={styles.logo} />
-          <Link href={pathname.includes('/share') ? HOMEPAGE_URL : '/'}>umami</Link>
+          <Link href={pathname.includes('/share') ? HOMEPAGE_URL : '/'} className={styles.logoText}>
+            feather
+          </Link>
         </div>
         <HamburgerButton />
         {user && (

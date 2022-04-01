@@ -1,5 +1,5 @@
 {
-    "name": "Umami",
+    "name": "feather",
     "description": "Umami is a simple, fast, website analytics alternative to Google Analytics.",
     "keywords": [
       "analytics",
@@ -7,7 +7,7 @@
       "statistics",
       "web-analytics"
     ],
-    "website": "https://umami.is",
+    "website": "https://feather.is",
     "repository": "https://github.com/mikecao/umami",
     "addons": [
       "heroku-postgresql"
