@@ -79,6 +79,10 @@ body {
     'Times New Roman', serif !important;
 }
 
+.si-LK {
+  font-family: 'Noto Sans Sinhala', Roboto, Noto, 'Times New Roman', sans-serif !important;
+}
+
 .he-IL {
   font-family: 'New Peninim MT', 'Arial Hebrew', Gisha, 'Times New Roman', Roboto, Noto,
     'Noto Sans Hebrew', sans-serif !important;
@@ -116,6 +120,7 @@ a:visited {
 
 input[type='text'],
 input[type='password'],
+select,
 textarea {
   color: var(--gray900);
   background: var(--gray50);

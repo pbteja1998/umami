@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model account {
+  id          Int       @id @default(autoincrement()) @map("user_id")
+  username    String    @unique @db.VarChar(255)
+  password    String    @db.VarChar(60)
+  isAdmin     Boolean   @default(false) @map("is_admin")
+  createdAt   DateTime? @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime? @default(now()) @map("updated_at") @db.Timestamptz(6)
+  accountUuid String    @unique @map("account_uuid") @db.Uuid
+  website     website[]
+
+  @@index([accountUuid])
+}
+
+model event {
+  id        Int        @id() @default(autoincrement()) @map("event_id")
+  websiteId Int        @map("website_id")
+  sessionId Int        @map("session_id")
+  createdAt DateTime?  @default(now()) @map("created_at") @db.Timestamptz(6)
+  url       String     @db.VarChar(500)
+  eventName String     @map("event_name") @db.VarChar(50)
+  eventUuid String     @unique @map("event_uuid") @db.Uuid
+  session   session    @relation(fields: [sessionId], references: [id])
+  website   website    @relation(fields: [websiteId], references: [id])
+  eventData eventData?
+
+  @@index([createdAt])
+  @@index([sessionId])
+  @@index([websiteId])
+  @@index([eventUuid])
+}
+
+model eventData {
+  id        Int   @id @default(autoincrement()) @map("event_data_id")
+  eventId   Int   @unique @map("event_id")
+  eventData Json  @map("event_data")
+  event     event @relation(fields: [eventId], references: [id])
+
+  @@map("event_data")
+}
+
+model pageview {
+  id        Int       @id @default(autoincrement()) @map("view_id")
+  websiteId Int       @map("website_id")
+  sessionId Int       @map("session_id")
+  createdAt DateTime? @default(now()) @map("created_at") @db.Timestamptz(6)
+  url       String    @db.VarChar(500)
+  referrer  String?   @db.VarChar(500)
+  session   session   @relation(fields: [sessionId], references: [id])
+  website   website   @relation(fields: [websiteId], references: [id])
+
+  @@index([createdAt])
+  @@index([sessionId])
+  @@index([websiteId, createdAt])
+  @@index([websiteId])
+  @@index([websiteId, sessionId, createdAt])
+}
+
+model session {
+  id          Int        @id @default(autoincrement()) @map("session_id")
+  sessionUuid String     @unique @map("session_uuid") @db.Uuid
+  websiteId   Int        @map("website_id")
+  createdAt   DateTime?  @default(now()) @map("created_at") @db.Timestamptz(6)
+  hostname    String?    @db.VarChar(100)
+  browser     String?    @db.VarChar(20)
+  os          String?    @db.VarChar(20)
+  device      String?    @db.VarChar(20)
+  screen      String?    @db.VarChar(11)
+  language    String?    @db.VarChar(35)
+  country     String?    @db.Char(2)
+  website     website?   @relation(fields: [websiteId], references: [id])
+  events      event[]
+  pageview    pageview[]
+
+  @@index([createdAt])
+  @@index([websiteId])
+  @@index([sessionUuid])
+}
+
+model website {
+  id          Int        @id @default(autoincrement()) @map("website_id")
+  websiteUuid String     @unique @map("website_uuid") @db.Uuid
+  userId      Int        @map("user_id")
+  name        String     @db.VarChar(100)
+  domain      String?    @db.VarChar(500)
+  shareId     String?    @unique @map("share_id") @db.VarChar(64)
+  createdAt   DateTime?  @default(now()) @map("created_at") @db.Timestamptz(6)
+  account     account    @relation(fields: [userId], references: [id])
+  event       event[]
+  pageview    pageview[]
+  session     session[]
+
+  @@index([userId])
+  @@index([websiteUuid])
+}

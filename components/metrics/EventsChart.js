@@ -6,19 +6,17 @@ import useFetch from 'hooks/useFetch';
 import useDateRange from 'hooks/useDateRange';
 import useTimezone from 'hooks/useTimezone';
 import usePageQuery from 'hooks/usePageQuery';
-import useShareToken from 'hooks/useShareToken';
-import { EVENT_COLORS, TOKEN_HEADER } from 'lib/constants';
+import { EVENT_COLORS } from 'lib/constants';
 
 export default function EventsChart({ websiteId, className, token }) {
   const [{ startDate, endDate, unit, modified }] = useDateRange(websiteId);
   const [timezone] = useTimezone();
   const {
-    query: { url, eventType },
+    query: { url, eventName },
   } = usePageQuery();
-  const shareToken = useShareToken();
 
   const { data, loading } = useFetch(
-    `/website/${websiteId}/events`,
+    `/websites/${websiteId}/events`,
     {
       params: {
         start_at: +startDate,
@@ -26,12 +24,11 @@ export default function EventsChart({ websiteId, className, token }) {
         unit,
         tz: timezone,
         url,
-        event_type: eventType,
+        event_name: eventName,
         token,
       },
-      headers: { [TOKEN_HEADER]: shareToken?.token },
     },
-    [modified, eventType],
+    [modified, eventName],
   );
 
   const datasets = useMemo(() => {

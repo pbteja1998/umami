@@ -4,7 +4,7 @@ const https = require('https');
 const chalk = require('chalk');
 
 const src = path.resolve(__dirname, '../lang');
-const dest = path.resolve(__dirname, '../public/country');
+const dest = path.resolve(__dirname, '../public/intl/country');
 const files = fs.readdirSync(src);
 
 const getUrl = locale =>
@@ -26,6 +26,7 @@ const download = async files => {
     if (!fs.existsSync(filename)) {
       await new Promise(resolve => {
         https.get(getUrl(locale), res => {
+          // eslint-disable-next-line no-console
           console.log('Downloaded', chalk.greenBright('->'), filename);
           resolve(res.pipe(fs.createWriteStream(filename)));
         });

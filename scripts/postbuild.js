@@ -1,9 +1,9 @@
 require('dotenv').config();
-const sendTelemetry = require('./telemetry');
+const { sendTelemetry } = require('./telemetry');
 
 async function run() {
-  if (!process.env.TELEMETRY_DISABLE) {
-    await sendTelemetry();
+  if (!process.env.DISABLE_TELEMETRY) {
+    await sendTelemetry('build');
   }
 }
 

@@ -1,27 +1,38 @@
-import React from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
-import useVersion from 'hooks/useVersion';
-import styles from './UpdateNotice.module.css';
-import ButtonLayout from '../layout/ButtonLayout';
+import { setItem } from 'next-basics';
+import ButtonLayout from 'components/layout/ButtonLayout';
+import useStore, { checkVersion } from 'store/version';
+import { REPO_URL, VERSION_CHECK } from 'lib/constants';
 import Button from './Button';
-import useForceUpdate from '../../hooks/useForceUpdate';
+import styles from './UpdateNotice.module.css';
 
 export default function UpdateNotice() {
-  const forceUpdate = useForceUpdate();
-  const { hasUpdate, checked, latest, updateCheck } = useVersion(true);
+  const { latest, checked, hasUpdate, releaseUrl } = useStore();
+  const [dismissed, setDismissed] = useState(false);
+
+  const updateCheck = useCallback(() => {
+    setItem(VERSION_CHECK, { version: latest, time: Date.now() });
+  }, [latest]);
 
   function handleViewClick() {
-    location.href = 'https://github.com/mikecao/umami/releases';
     updateCheck();
-    forceUpdate();
+    setDismissed(true);
+    open(releaseUrl || REPO_URL, '_blank');
   }
 
   function handleDismissClick() {
     updateCheck();
-    forceUpdate();
+    setDismissed(true);
   }
 
-  if (!hasUpdate || checked) {
+  useEffect(() => {
+    if (!checked) {
+      checkVersion();
+    }
+  }, [checked]);
+
+  if (!hasUpdate || dismissed) {
     return null;
   }
 

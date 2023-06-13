@@ -1,16 +1,13 @@
 const fs = require('fs-extra');
 const path = require('path');
 const os = require('os');
-const retry = require('async-retry');
 const isCI = require('is-ci');
 const pkg = require('../package.json');
 
 const dest = path.resolve(__dirname, '../.next/cache/umami.json');
 const url = 'https://telemetry.umami.is/api/collect';
 
-async function sendTelemetry() {
-  await fs.ensureFile(dest);
-
+async function sendTelemetry(action) {
   let json = {};
 
   try {
@@ -19,36 +16,43 @@ async function sendTelemetry() {
     // Ignore
   }
 
-  if (json.version !== pkg.version) {
-    const { default: isDocker } = await import('is-docker');
-    const { default: fetch } = await import('node-fetch');
-
+  try {
     await fs.writeJSON(dest, { version: pkg.version });
+  } catch {
+    // Ignore
+  }
 
-    const payload = {
-      umami: pkg.version,
-      node: process.version,
-      platform: os.platform(),
-      arch: os.arch(),
-      os: `${os.type()} (${os.version()})`,
-      isDocker: isDocker(),
-      isCI,
-    };
+  const { default: isDocker } = await import('is-docker');
+  const { default: fetch } = await import('node-fetch');
+  const upgrade = json.version !== undefined && json.version !== pkg.version;
 
-    await retry(
-      async () => {
-        await fetch(url, {
-          method: 'post',
-          cache: 'no-cache',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload),
-        });
+  const payload = {
+    action,
+    version: pkg.version,
+    node: process.version,
+    platform: os.platform(),
+    arch: os.arch(),
+    os: `${os.type()} (${os.version()})`,
+    docker: isDocker(),
+    ci: isCI,
+    prev: json.version,
+    upgrade,
+  };
+
+  try {
+    await fetch(url, {
+      method: 'post',
+      cache: 'no-cache',
+      headers: {
+        'Content-Type': 'application/json',
       },
-      { minTimeout: 500, retries: 1, factor: 1 },
-    ).catch(() => {});
+      body: JSON.stringify(payload),
+    });
+  } catch {
+    // Ignore
   }
 }
 
-module.exports = sendTelemetry;
+module.exports = {
+  sendTelemetry,
+};
