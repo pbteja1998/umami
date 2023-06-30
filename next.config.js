@@ -10,7 +10,7 @@ const contentSecurityPolicy = `
   script-src 'self' 'unsafe-eval';
   style-src 'self' 'unsafe-inline';
   connect-src 'self' api.umami.is;
-  frame-ancestors 'self' feather.so;
+  frame-ancestors 'self' feather.so featherblog.retool.com;
 `;
 
 const headers = [
