@@ -9,13 +9,15 @@ export default function WebsitesPage({ disabled }) {
     return null;
   }
 
-  return (
-    <AppLayout title={`${formatMessage(labels.settings)} - ${formatMessage(labels.websites)}`}>
-      <SettingsLayout>
-        <WebsitesList />
-      </SettingsLayout>
-    </AppLayout>
-  );
+  return null;
+
+  // return (
+  //   <AppLayout title={`${formatMessage(labels.settings)} - ${formatMessage(labels.websites)}`}>
+  //     <SettingsLayout>
+  //       <WebsitesList />
+  //     </SettingsLayout>
+  //   </AppLayout>
+  // );
 }
 
 export async function getServerSideProps() {
