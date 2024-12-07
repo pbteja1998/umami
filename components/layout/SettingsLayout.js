@@ -12,6 +12,11 @@ export function SettingsLayout({ children }) {
   const { formatMessage, labels } = useMessages();
   const { cloudMode } = useConfig();
 
+  console.log('labels.teams', labels.teams);
+  console.log('labels.websites', labels.websites);
+  console.log('labels.users', labels.users);
+  console.log('labels.profile', labels.profile);
+
   const items = [
     { key: 'websites', label: formatMessage(labels.websites), url: '/settings/websites' },
     { key: 'teams', label: formatMessage(labels.teams), url: '/settings/teams' },
