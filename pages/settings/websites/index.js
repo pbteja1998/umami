@@ -1,6 +1,6 @@
 import AppLayout from 'components/layout/AppLayout';
-import SettingsLayout from 'components/layout/SettingsLayout';
-import WebsitesList from 'components/pages/settings/websites/WebsitesList';
+// import SettingsLayout from 'components/layout/SettingsLayout';
+// import WebsitesList from 'components/pages/settings/websites/WebsitesList';
 import useMessages from 'hooks/useMessages';
 
 export default function WebsitesPage({ disabled }) {
@@ -9,15 +9,15 @@ export default function WebsitesPage({ disabled }) {
     return null;
   }
 
-  return null;
+  // return null;
 
-  // return (
-  //   <AppLayout title={`${formatMessage(labels.settings)} - ${formatMessage(labels.websites)}`}>
-  //     <SettingsLayout>
-  //       <WebsitesList />
-  //     </SettingsLayout>
-  //   </AppLayout>
-  // );
+  return (
+    <AppLayout title={`${formatMessage(labels.settings)} - ${formatMessage(labels.websites)}`}>
+      {/* <SettingsLayout>
+        <WebsitesList />
+      </SettingsLayout> */}
+    </AppLayout>
+  );
 }
 
 export async function getServerSideProps() {
