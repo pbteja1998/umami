@@ -18,7 +18,7 @@ export function SettingsLayout({ children }) {
   console.log('labels.profile', labels.profile);
 
   const items = [
-    { key: 'websites', label: formatMessage(labels.websites), url: '/settings/websites' },
+    // { key: 'websites', label: formatMessage(labels.websites), url: '/settings/websites' },
     // { key: 'teams', label: formatMessage(labels.teams), url: '/settings/teams' },
     // user.isAdmin && { key: 'users', label: formatMessage(labels.users), url: '/settings/users' },
     // { key: 'profile', label: formatMessage(labels.profile), url: '/settings/profile' },
