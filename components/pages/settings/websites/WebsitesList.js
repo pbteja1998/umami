@@ -25,6 +25,8 @@ export function WebsitesList() {
     showToast({ message: formatMessage(messages.saved), variant: 'success' });
   };
 
+  console.log('WebsitesList rendering');
+
   const addButton = (
     <ModalTrigger>
       <Button variant="primary">

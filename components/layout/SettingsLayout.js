@@ -28,16 +28,18 @@ export function SettingsLayout({ children }) {
 
   const getKey = () => items.find(({ url }) => pathname === url)?.key;
 
+  console.log('getKey: ', getKey());
+
   return (
     <Row>
-      {/* {!cloudMode && (
+      {!cloudMode && (
         <Column className={styles.menu} defaultSize={12} md={4} lg={3} xl={2}>
           <SideNav items={items} shallow={true} selectedKey={getKey()} />
         </Column>
       )}
       <Column className={styles.content} defaultSize={12} md={8} lg={9} xl={10}>
         {children}
-      </Column> */}
+      </Column>
     </Row>
   );
 }

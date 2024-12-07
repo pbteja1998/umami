@@ -1,24 +1,22 @@
 import AppLayout from 'components/layout/AppLayout';
-// import SettingsLayout from 'components/layout/SettingsLayout';
-// import WebsitesList from 'components/pages/settings/websites/WebsitesList';
+import SettingsLayout from 'components/layout/SettingsLayout';
+import WebsitesList from 'components/pages/settings/websites/WebsitesList';
 import useMessages from 'hooks/useMessages';
 
 export default function WebsitesPage({ disabled }) {
+  console.log('rendering WebsitesPage');
   const { formatMessage, labels } = useMessages();
   if (disabled) {
     return null;
   }
 
-  // return null;
-
-  console.log('labels.settings', labels.settings);
-  console.log('labels.websites', labels.websites);
+  console.log('website page below disabled');
 
   return (
     <AppLayout title={`${formatMessage(labels.settings)} - ${formatMessage(labels.websites)}`}>
-      {/* <SettingsLayout> */}
-      {/* <WebsitesList /> */}
-      {/* </SettingsLayout> */}
+      <SettingsLayout>
+        <WebsitesList />
+      </SettingsLayout>
     </AppLayout>
   );
 }
