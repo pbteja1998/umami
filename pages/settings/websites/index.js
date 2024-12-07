@@ -1,5 +1,5 @@
 import AppLayout from 'components/layout/AppLayout';
-// import SettingsLayout from 'components/layout/SettingsLayout';
+import SettingsLayout from 'components/layout/SettingsLayout';
 // import WebsitesList from 'components/pages/settings/websites/WebsitesList';
 import useMessages from 'hooks/useMessages';
 
@@ -16,9 +16,7 @@ export default function WebsitesPage({ disabled }) {
 
   return (
     <AppLayout title={`${formatMessage(labels.settings)} - ${formatMessage(labels.websites)}`}>
-      {/* <SettingsLayout>
-        <WebsitesList />
-      </SettingsLayout> */}
+      <SettingsLayout>{/* <WebsitesList /> */}</SettingsLayout>
     </AppLayout>
   );
 }
