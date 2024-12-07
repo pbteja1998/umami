@@ -17,6 +17,8 @@ export function AppLayout({ title, children }) {
     return null;
   }
 
+  console.log('title: ', title);
+
   const allowUpdate = user?.isAdmin && !config?.updatesDisabled && !pathname.includes('/share/');
 
   return (

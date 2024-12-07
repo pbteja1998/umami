@@ -11,6 +11,9 @@ export default function WebsitesPage({ disabled }) {
 
   // return null;
 
+  console.log('labels.settings', labels.settings);
+  console.log('labels.websites', labels.websites);
+
   return (
     <AppLayout title={`${formatMessage(labels.settings)} - ${formatMessage(labels.websites)}`}>
       {/* <SettingsLayout>
