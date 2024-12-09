@@ -216,4 +216,8 @@ export const messages = defineMessages({
     id: 'message.incorrect-username-password',
     defaultMessage: 'Incorrect username and/or password.',
   },
+  newVersionAvailable: {
+    id: 'message.new-version-available',
+    defaultMessage: 'A new version of umami {version} is available!',
+  },
 });
