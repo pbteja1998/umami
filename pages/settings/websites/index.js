@@ -4,13 +4,10 @@ import WebsitesList from 'components/pages/settings/websites/WebsitesList';
 import useMessages from 'hooks/useMessages';
 
 export default function WebsitesPage({ disabled }) {
-  console.log('rendering WebsitesPage');
   const { formatMessage, labels } = useMessages();
   if (disabled) {
     return null;
   }
-
-  console.log('website page below disabled');
 
   return (
     <AppLayout title={`${formatMessage(labels.settings)} - ${formatMessage(labels.websites)}`}>

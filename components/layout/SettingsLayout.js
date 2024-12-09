@@ -12,23 +12,14 @@ export function SettingsLayout({ children }) {
   const { formatMessage, labels } = useMessages();
   const { cloudMode } = useConfig();
 
-  console.log('labels.teams', labels.teams);
-  console.log('labels.websites', labels.websites);
-  console.log('labels.users', labels.users);
-  console.log('labels.profile', labels.profile);
-
   const items = [
-    // { key: 'websites', label: formatMessage(labels.websites), url: '/settings/websites' },
-    // { key: 'teams', label: formatMessage(labels.teams), url: '/settings/teams' },
-    // user.isAdmin && { key: 'users', label: formatMessage(labels.users), url: '/settings/users' },
-    // { key: 'profile', label: formatMessage(labels.profile), url: '/settings/profile' },
+    { key: 'websites', label: formatMessage(labels.websites), url: '/settings/websites' },
+    { key: 'teams', label: formatMessage(labels.teams), url: '/settings/teams' },
+    user.isAdmin && { key: 'users', label: formatMessage(labels.users), url: '/settings/users' },
+    { key: 'profile', label: formatMessage(labels.profile), url: '/settings/profile' },
   ].filter(n => n);
 
-  console.log('items', items);
-
   const getKey = () => items.find(({ url }) => pathname === url)?.key;
-
-  console.log('getKey: ', getKey());
 
   return (
     <Row>

@@ -13,17 +13,11 @@ export function AppLayout({ title, children }) {
   const config = useConfig();
   const { pathname } = useRouter();
 
-  console.log('AppLayout rendering');
-
   if (!user || !config) {
     return null;
   }
 
-  console.log('title: ', title);
-
   const allowUpdate = user?.isAdmin && !config?.updatesDisabled && !pathname.includes('/share/');
-
-  console.log('allowUpdate: ', allowUpdate);
 
   return (
     <div className={styles.layout} data-app-version={CURRENT_VERSION}>
